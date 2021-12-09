@@ -11,11 +11,9 @@ namespace FinalProject.Models
 
         [StringLength(60, MinimumLength = 3)]
         [Required]
-        public string FirstName {get; set;}
+        public string Name {get; set;}
 
-        [StringLength(60, MinimumLength = 3)]
-        [Required]
-        public string LastName {get;set;}
+        
         public List<UserProduct> UserProducts{get;set;}
 
         

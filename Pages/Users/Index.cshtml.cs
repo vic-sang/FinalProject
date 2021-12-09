@@ -18,7 +18,8 @@ namespace FinalProject.Pages.Users
             _context = context;
         }
 
-        public IList<User> User { get;set; }
+        new public IList<User> User { get;set; }
+        public IList<Product> Product { get;set; }
 
         public async Task OnGetAsync()
         {

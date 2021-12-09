@@ -18,12 +18,12 @@ namespace FinalProject.Models
                 }
 
                  List<User> users = new List<User> {
-                     new User {FirstName= "Lian", LastName="Cornfoot"}
+                     new User {Name = "hey"}
                  };
                  context.AddRange(users);
 
                  List<Product>products = new List<Product>{
-                     new Product {Name = "David", Description = "Hello"}
+                     new Product {Name = "David", Description = "hi", ReleaseDate = DateTime.Parse ("10/02/2021")}
 
                  };
                  context.AddRange(users);

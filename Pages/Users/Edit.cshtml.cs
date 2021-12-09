@@ -20,7 +20,7 @@ namespace FinalProject.Pages.Users
         }
 
         [BindProperty]
-        public User User { get; set; }
+        new public User User { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
