@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FinalProject.Migrations
 {
@@ -14,9 +13,7 @@ namespace FinalProject.Migrations
                     ProductID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(maxLength: 60, nullable: false),
-                    ReleaseDate = table.Column<DateTime>(nullable: false),
-                    Description = table.Column<string>(maxLength: 30, nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Description = table.Column<string>(maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {

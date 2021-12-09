@@ -23,14 +23,14 @@ namespace FinalProject.Models
                  context.AddRange(users);
 
                  List<Product>products = new List<Product>{
-                     new Product {Description = "Hello"}
+                     new Product {Name = "David", Description = "Hello"}
 
                  };
                  context.AddRange(users);
 
                  List<UserProduct> productList = new List<UserProduct>
                  {
-                     new UserProduct {ProductID = 1, UserID =1}
+                     new UserProduct {Product = products[0], User = users[0]}
 
                  };
                  context.AddRange(productList);

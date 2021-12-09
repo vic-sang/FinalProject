@@ -22,7 +22,7 @@ namespace FinalProject.Pages.Users
 
         public async Task OnGetAsync()
         {
-            User = await _context.User.ToListAsync();
+            User = await _context.User.Include(s => s.UserProducts).ThenInclude(sc => sc.Product).ToListAsync();
         }
     }
 }
