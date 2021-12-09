@@ -23,10 +23,10 @@ namespace FinalProject.Models
                  context.AddRange(users);
 
                  List<Product>products = new List<Product>{
-                     new Product {Name = "David", Description = "hi", ReleaseDate = DateTime.Parse ("10/02/2021")}
+                     new Product { Description = "hi", ReleaseDate = DateTime.Parse ("10/02/2021"), Price = 00}
 
                  };
-                 context.AddRange(users);
+                 context.AddRange(products);
 
                  List<UserProduct> productList = new List<UserProduct>
                  {

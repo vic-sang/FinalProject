@@ -47,6 +47,7 @@ namespace FinalProject.Pages.Users
             }
 
             _context.User.Add(User);
+            
            
             await _context.SaveChangesAsync();
 

@@ -9,9 +9,9 @@ namespace FinalProject.Models
     {
         public int ProductID {get; set;}
 
-        [StringLength(60, MinimumLength = 3)]
-        [Required]
-        public string Name {get; set;}
+        // [StringLength(60, MinimumLength = 3)]
+        // [Required]
+        // public string Name {get; set;}
 
         [Display(Name = "Release Date")]
         [DataType(DataType.Date)]
