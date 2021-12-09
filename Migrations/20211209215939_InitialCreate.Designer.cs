@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalProject.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20211209202013_InitialCreate")]
+    [Migration("20211209215939_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,11 +28,6 @@ namespace FinalProject.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasMaxLength(30);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(60);
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");

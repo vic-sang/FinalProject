@@ -21,6 +21,7 @@ namespace FinalProject.Pages.Users
 
         [BindProperty]
         new public User User { get; set; }
+        public Product Product {get;set;}
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

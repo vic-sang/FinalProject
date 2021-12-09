@@ -19,6 +19,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Product[0].Description)
             </th>
+             
             
             <th></th>
         </tr>
@@ -31,10 +32,12 @@
             </td>
             
             <td>
-                @*  *@
+                
                 @foreach (var product in item.UserProducts)
                 {
                     @product.Product.Description <br />
+                     @product.Product.ReleaseDate<br />
+                     @product.Product.Price<br />
                 }
                 @if (item.UserProducts.Count == 0)
                 {

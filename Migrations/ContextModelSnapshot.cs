@@ -27,11 +27,6 @@ namespace FinalProject.Migrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(30);
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasMaxLength(60);
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
