@@ -47,7 +47,7 @@ namespace FinalProject.Pages.Users
                 users = users.Where(s => s.Name.Contains(searchString));
                  }
 
-                User = await users.AsNoTracking().ToListAsync();
+               
 
 
             
@@ -71,6 +71,7 @@ namespace FinalProject.Pages.Users
              User = await _context.User.Include(s => s.UserProducts).ThenInclude(sc => sc.Product).ToListAsync();
             User = await query.Skip((PageNum-1)*PageSize).Take(PageSize).ToListAsync();
            // User = await _context.User.Skip((PageNum-1)*PageSize).Take(PageSize).ToListAsync();
+            
         }
     }
 }
