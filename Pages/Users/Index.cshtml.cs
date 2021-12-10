@@ -46,7 +46,7 @@ namespace FinalProject.Pages.Users
                 {
                 users = users.Where(s => s.Name.Contains(searchString));
                  }
-
+                User = await users.AsNoTracking().ToListAsync();
                
 
 
