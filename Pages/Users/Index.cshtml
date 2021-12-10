@@ -84,21 +84,14 @@
         prevDisabled = "disabled";
     }
 }
-@{
-    // If we are on page 1, prevDisabled will be set to the "disabled" class
-    // otherwise, it will be empty. So our previous button will be enabled or disabled based on this logic
-    var nexDisabled = "";
-    if (Model.PageNum <= 3)
-    {
-        nexDisabled = "disabled";
-    }
-}
 
+
+   
 <!-- Pagination -->
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     <!-- FIXME: These buttons will forget your current sort order! -->
     <li class="page-item @prevDisabled"><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)">Previous</a></li>
-    <li class="page-item @nexDisabled"><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)">Next</a></li>
+    <li class="page-item "><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)">Next</a></li>
   </ul>
 </nav>
