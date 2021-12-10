@@ -26,10 +26,31 @@ namespace FinalProject.Pages.Users
         [BindProperty (SupportsGet = true)]
         public string CurrentSort {get;set;}
         public SelectList SortList {get;set;}
+
+        // [BindProperty(SupportsGet = true)]
+        // public string SearchString {get; set;}
+        public string CurrentFilter {get;set;}
+        public string NameSort { get; set; }
+
        
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string CurrentShort, string searchString)
         {
+             NameSort = String.IsNullOrEmpty(CurrentShort) ? "name_desc" : "";
+             CurrentFilter = searchString;
+
+            IQueryable<User> users = from s in _context.User
+                    select s;
+
+            if (!string.IsNullOrEmpty(searchString))
+                {
+                users = users.Where(s => s.Name.Contains(searchString));
+                 }
+
+                User = await users.AsNoTracking().ToListAsync();
+
+
+            
             var query = _context.User.Select(s =>s);
             List<SelectListItem> sortItems = new List<SelectListItem> {
                 new SelectListItem {Text = "Name Ascending", Value = "first_asc"},
