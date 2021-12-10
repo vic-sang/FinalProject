@@ -25,17 +25,17 @@ namespace FinalProject.Pages.Users
         public int PageSize {get; set;} = 10;
         [BindProperty (SupportsGet = true)]
         public string CurrentSort {get;set;}
-        public UserProduct SortList {get;set;}
+        public SelectList SortList {get;set;}
        
 
         public async Task OnGetAsync()
         {
             var query = _context.User.Select(s =>s);
-            // List<UserProduct>sortItems = new List<UserProduct> {
-            //     new UserProduct {Text = "Name Ascending", Value = "first_asc"},
-            //     new UserProduct {Text = "Name Descending", Value = "first_desc"}
-            // };
-            // SortList = new UserProduct (sortItems, "Value", "Text", CurrentSort);
+            List<SelectListItem> sortItems = new List<SelectListItem> {
+                new SelectListItem {Text = "Name Ascending", Value = "first_asc"},
+                new SelectListItem {Text = "Name Descending", Value = "first_desc"}
+            };
+            SortList = new SelectList(sortItems, "Value", "Text", CurrentSort);
 
 
             switch (CurrentSort)
@@ -49,7 +49,7 @@ namespace FinalProject.Pages.Users
             }
              User = await _context.User.Include(s => s.UserProducts).ThenInclude(sc => sc.Product).ToListAsync();
             User = await query.Skip((PageNum-1)*PageSize).Take(PageSize).ToListAsync();
-            User = await _context.User.Skip((PageNum-1)*PageSize).Take(PageSize).ToListAsync();
+           // User = await _context.User.Skip((PageNum-1)*PageSize).Take(PageSize).ToListAsync();
         }
     }
 }

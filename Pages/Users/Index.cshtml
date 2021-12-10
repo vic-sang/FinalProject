@@ -10,14 +10,20 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-
+<form>
+	<select asp-for="CurrentSort" asp-items="Model.SortList">
+		<option value="">sort by...</option>
+	</select>
+	<button type="submit">Sort</button>
+</form>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @{
                     var firstSort = "first_asc";
-                    if (Model.CurrentSort == "first_asc"){
+                    if (Model.CurrentSort == "first_asc")
+                    {
                         firstSort ="first_desc";
                     }
                 }
@@ -68,20 +74,12 @@
         prevDisabled = "disabled";
     }
 }
-@{
-    // If we are on page 1, prevDisabled will be set to the "disabled" class
-    // otherwise, it will be empty. So our previous button will be enabled or disabled based on this logic
-    var nextDisabled = "";
-    if (Model.PageNum <= -3)
-    {
-        nextDisabled = "disabled";
-    }
-}
+
 <!-- Pagination -->
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     <!-- FIXME: These buttons will forget your current sort order! -->
     <li class="page-item @prevDisabled"><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)">Previous</a></li>
-    <li class="page-item @nextDisabled"><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)">Next</a></li>
+    <li class="page-item "><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)">Next</a></li>
   </ul>
 </nav>
