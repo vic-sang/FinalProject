@@ -32,7 +32,7 @@ namespace FinalProject.Models
     public class UserProduct
     {
         public int ProductID {get;set;}
-        public int UserID {get; set;}
+        public int userID {get; set;}
         public Product Product {get; set;}
         public User User{get;set;}
         

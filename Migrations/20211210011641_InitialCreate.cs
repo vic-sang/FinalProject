@@ -40,11 +40,11 @@ namespace FinalProject.Migrations
                 columns: table => new
                 {
                     ProductID = table.Column<int>(nullable: false),
-                    UserID = table.Column<int>(nullable: false)
+                    userID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserProduct", x => new { x.ProductID, x.UserID });
+                    table.PrimaryKey("PK_UserProduct", x => new { x.ProductID, x.userID });
                     table.ForeignKey(
                         name: "FK_UserProduct_Product_ProductID",
                         column: x => x.ProductID,
@@ -52,17 +52,17 @@ namespace FinalProject.Migrations
                         principalColumn: "ProductID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserProduct_User_UserID",
-                        column: x => x.UserID,
+                        name: "FK_UserProduct_User_userID",
+                        column: x => x.userID,
                         principalTable: "User",
                         principalColumn: "userID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserProduct_UserID",
+                name: "IX_UserProduct_userID",
                 table: "UserProduct",
-                column: "UserID");
+                column: "userID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

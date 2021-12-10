@@ -10,16 +10,20 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.User[0].Name)
+                @{
+                    var firstSort = "first_asc";
+                    if (Model.CurrentSort == "first_asc"){
+                        firstSort ="first_desc";
+                    }
+                }
+                <a asp-page="./Index" asp-route-CurrentSort="@firstSort">@Html.DisplayNameFor(model => model.User[0].Name)</a>
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product[0].Description)
-            </th>
-             
+           
             
             <th></th>
         </tr>
@@ -30,14 +34,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            
+             
             <td>
                 
                 @foreach (var product in item.UserProducts)
                 {
                     @product.Product.Description <br />
-                     @product.Product.ReleaseDate<br />
-                     @product.Product.Price<br />
+                     
                 }
                 @if (item.UserProducts.Count == 0)
                 {
@@ -53,3 +56,32 @@
 }
     </tbody>
 </table>
+
+</hr>
+<hr />
+@{
+    // If we are on page 1, prevDisabled will be set to the "disabled" class
+    // otherwise, it will be empty. So our previous button will be enabled or disabled based on this logic
+    var prevDisabled = "";
+    if (Model.PageNum <= 1)
+    {
+        prevDisabled = "disabled";
+    }
+}
+@{
+    // If we are on page 1, prevDisabled will be set to the "disabled" class
+    // otherwise, it will be empty. So our previous button will be enabled or disabled based on this logic
+    var nextDisabled = "";
+    if (Model.PageNum <= -3)
+    {
+        nextDisabled = "disabled";
+    }
+}
+<!-- Pagination -->
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <!-- FIXME: These buttons will forget your current sort order! -->
+    <li class="page-item @prevDisabled"><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum - 1)">Previous</a></li>
+    <li class="page-item @nextDisabled"><a class="page-link" asp-page="./Index" asp-route-PageNum="@(Model.PageNum + 1)">Next</a></li>
+  </ul>
+</nav>

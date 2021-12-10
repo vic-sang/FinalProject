@@ -59,12 +59,12 @@ namespace FinalProject.Migrations
                     b.Property<int>("ProductID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("UserID")
+                    b.Property<int>("userID")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("ProductID", "UserID");
+                    b.HasKey("ProductID", "userID");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("userID");
 
                     b.ToTable("UserProduct");
                 });
@@ -79,7 +79,7 @@ namespace FinalProject.Migrations
 
                     b.HasOne("FinalProject.Models.User", "User")
                         .WithMany("UserProducts")
-                        .HasForeignKey("UserID")
+                        .HasForeignKey("userID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

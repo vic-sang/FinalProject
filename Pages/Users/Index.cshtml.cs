@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using FinalProject.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FinalProject.Pages.Users
 {
@@ -19,11 +20,36 @@ namespace FinalProject.Pages.Users
         }
 
         new public IList<User> User { get;set; }
-        public IList<Product> Product { get;set; }
+        [BindProperty(SupportsGet = true)]
+        public int PageNum {get; set;} = 1;
+        public int PageSize {get; set;} = 10;
+        [BindProperty (SupportsGet = true)]
+        public string CurrentSort {get;set;}
+        public UserProduct SortList {get;set;}
+       
 
         public async Task OnGetAsync()
         {
-            User = await _context.User.Include(s => s.UserProducts).ThenInclude(sc => sc.Product).ToListAsync();
+            var query = _context.User.Select(s =>s);
+            // List<UserProduct>sortItems = new List<UserProduct> {
+            //     new UserProduct {Text = "Name Ascending", Value = "first_asc"},
+            //     new UserProduct {Text = "Name Descending", Value = "first_desc"}
+            // };
+            // SortList = new UserProduct (sortItems, "Value", "Text", CurrentSort);
+
+
+            switch (CurrentSort)
+            {
+                case "first_asc":
+                    query = query.OrderBy (s => s.Name);
+                    break;
+                    case "first_desc":
+                        query = query.OrderByDescending(s => s.Name);
+                        break;
+            }
+             User = await _context.User.Include(s => s.UserProducts).ThenInclude(sc => sc.Product).ToListAsync();
+            User = await query.Skip((PageNum-1)*PageSize).Take(PageSize).ToListAsync();
+            User = await _context.User.Skip((PageNum-1)*PageSize).Take(PageSize).ToListAsync();
         }
     }
 }

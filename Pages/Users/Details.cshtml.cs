@@ -42,7 +42,8 @@ namespace FinalProject.Pages.Users
             }
 
             User = await _context.User.Include(s => s.UserProducts).ThenInclude(sc => sc.Product).FirstOrDefaultAsync(m => m.userID == id);
-
+            AllProducts = await _context.Product.ToListAsync();
+            ProductDropDown = new SelectList(AllProducts, "ProductID", "Description");
             if (User == null)
             {
                 return NotFound();
@@ -103,9 +104,9 @@ namespace FinalProject.Pages.Users
                 return NotFound();
             }
 
-            if (!_context.UserProduct.Any(sc => sc.ProductID == ProductIdToAdd && sc.UserID == id.Value))
+            if (!_context.UserProduct.Any(sc => sc.ProductID == ProductIdToAdd && sc.userID == id.Value))
             {
-                UserProduct productToAdd = new UserProduct { UserID = id.Value, ProductID = ProductIdToAdd};
+                UserProduct productToAdd = new UserProduct { userID = id.Value, ProductID = ProductIdToAdd};
                 _context.Add(productToAdd);
                 _context.SaveChanges();
             }

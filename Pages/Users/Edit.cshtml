@@ -19,10 +19,44 @@
                 <input asp-for="User.Name" class="form-control" />
                 <span asp-validation-for="User.Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
+           @*
+                <div class="form-group">
                 <label asp-for="Product.Description" class="control-label"></label>
                 <input asp-for="Product.Description" class="form-control" />
                 <span asp-validation-for="Product.Description" class="text-danger"></span>
+            </div>
+           *@ 
+
+           <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <table>
+                        <tr>
+                            @* loop through all courses and display them with a checkbox.
+                               If the student is in the course, mark it as checked
+                            *@
+                            @{
+                                var check = "";
+                                int cnt = 0;
+                                foreach(var product in Model.Products)
+                                {
+                                    if (cnt % 3 == 0)
+                                    {
+                                        @:</tr><tr>
+                                    }
+                                    check = "";
+                                    if (Model.User.UserProducts.Any(sc => sc.ProductID == product.ProductID))
+                                    {
+                                        check = "checked";
+                                    }
+                                    <td>
+                                        <input type="checkbox" name="selectedProducts" value="@product.ProductID" @check /> @product.Description
+                                    </td>
+                                    cnt++;
+                                }
+                                @:</tr>
+                            }
+                    </table>
+                </div>
             </div>
             
             <div class="form-group">

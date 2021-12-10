@@ -17,9 +17,9 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.User.Name)
         </dd>
+        
          <ul>       
-                @* 
-                *@
+                
                 @foreach(var product in Model.User.UserProducts)
                 {
                     <form method="post">
@@ -32,7 +32,7 @@
         </ul>
 
     </dl>
- @*<div class="row">
+ <div class="row">
     <div class="col-md-4">
         <form method="post">
             <input type="hidden" asp-for="User.userID" />
@@ -48,7 +48,7 @@
         </form>
     </div>
     </div>
-</div>*@
+</div>
 
 </div>
 <div>

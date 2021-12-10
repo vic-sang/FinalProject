@@ -10,7 +10,7 @@ namespace FinalProject.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserProduct>().HasKey(s => new {s.ProductID, s.UserID});
+            modelBuilder.Entity<UserProduct>().HasKey(s => new {s.ProductID, s.userID});
         }
 
         public DbSet<Product> Product {get; set;}
