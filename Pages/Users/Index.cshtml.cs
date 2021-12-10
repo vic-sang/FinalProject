@@ -27,8 +27,8 @@ namespace FinalProject.Pages.Users
         public string CurrentSort {get;set;}
         public SelectList SortList {get;set;}
 
-        // [BindProperty(SupportsGet = true)]
-        // public string SearchString {get; set;}
+        [BindProperty(SupportsGet = true)]
+        public string SearchString {get; set;}
         public string CurrentFilter {get;set;}
         public string NameSort { get; set; }
 
